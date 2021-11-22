@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { SessionComponent } from './session/session.component';
 import { KeyspaceComponent } from './keyspace/keyspace.component';
 import { TableComponent } from './table/table.component';
 import { TableMetadataComponent } from './table-metadata/table-metadata.component';
@@ -11,7 +11,7 @@ import { TableMetadataComponent } from './table-metadata/table-metadata.componen
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    SessionComponent,
     KeyspaceComponent,
     TableComponent,
     TableMetadataComponent

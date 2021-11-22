@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SessionComponent } from './session/session.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: '/session', pathMatch: 'full' },
+  { path: 'session', component: SessionComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
