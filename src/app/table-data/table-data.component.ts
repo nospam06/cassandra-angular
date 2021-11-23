@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend/backend.service';
+import { TableRequest } from '../data/table-request';
 
 @Component({
   selector: 'app-table-data',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-data.component.css']
 })
 export class TableDataComponent implements OnInit {
-
-  constructor() { }
+tableRequest: TableRequest = {};
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
   }

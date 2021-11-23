@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'session', component: SessionComponent },
   { path: 'keyspace', component: KeyspaceComponent },
   { path: 'table', component: TableComponent },
-  { path: 'data', component: TableDataComponent }];
+  { path: 'table-data', component: TableDataComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
