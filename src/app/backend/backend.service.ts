@@ -20,7 +20,7 @@ export class BackendService {
   };
   sessionResponse: SessionResponse = {"sessionUuid": "", "keyspaces": []};
   keyspaceResponse: KeyspaceResponse = {"keyspace": "", "tables": []};
-  //tableResponse: TableResponse = {"table": "", "metaData": null, "rows": []};
+  tableResponse: TableResponse = {"table": "", "metaData": [], "rows": []};
 
   constructor(
     private http: HttpClient,) { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend/backend.service';
-import { TableRequest } from '../data/table-request';
+import { TableMetadata } from '../data/table-metadata';
+import { TableResponse } from '../data/table-response';
 
 @Component({
   selector: 'app-table-data',
@@ -8,10 +9,13 @@ import { TableRequest } from '../data/table-request';
   styleUrls: ['./table-data.component.css']
 })
 export class TableDataComponent implements OnInit {
-tableRequest: TableRequest = {};
+  "metaData": TableMetadata[];
+  "rows": string[][];
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
+    this.metaData = this.backendService.tableResponse.metaData;
+    this.rows = this.backendService.tableResponse.rows;
   }
 
 }

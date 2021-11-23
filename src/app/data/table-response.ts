@@ -1,5 +1,6 @@
+import { TableMetadata } from './table-metadata';
 export interface TableResponse {
     table: string;
-    metaData: Map<string, string>;
+    metaData: TableMetadata[];
     rows: string[][]
 }
