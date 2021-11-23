@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend/backend.service';
 
 @Component({
   selector: 'app-table',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  tables: string[] = [];
 
-  constructor() { }
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
+    this.tables = this.backendService.keyspaceResponse.tables;
   }
 
+  data(keyspace: string): void {
+  }
 }

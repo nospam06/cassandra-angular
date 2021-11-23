@@ -5,6 +5,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { SessionRequest } from '../data/session-request';
 import { SessionResponse } from '../data/session-response';
+import { KeyspaceRequest } from '../data/keyspace-request';
+import { KeyspaceResponse } from '../data/keyspace-response';
+import { TableRequest } from '../data/table-request';
+import { TableResponse } from '../data/table-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +18,8 @@ export class BackendService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+  sessionResponse: SessionResponse = {"sessionUuid": "", "keyspaces": []};
+  keyspaceResponse: KeyspaceResponse = {"keyspace": "", "tables": []};
 
   constructor(
     private http: HttpClient,) { }
@@ -21,6 +27,16 @@ export class BackendService {
   login(sessionRequest: SessionRequest): Observable<SessionResponse> {
     return this.http.post<SessionResponse>(this.backendUrl, sessionRequest, this.httpOptions)
       .pipe(catchError(this.handleError<SessionResponse>(`session request`)));
+  }
+
+  listTables(keyspaceRequest: KeyspaceRequest): Observable<KeyspaceResponse> {
+    return this.http.post<KeyspaceResponse>(this.backendUrl + "/keyspace", keyspaceRequest, this.httpOptions)
+      .pipe(catchError(this.handleError<KeyspaceResponse>(`keyspace request`)));
+  }
+
+  queryTable(tableRequest: TableRequest): Observable<TableResponse> {
+    return this.http.post<TableResponse>(this.backendUrl + "/table", tableRequest, this.httpOptions)
+      .pipe(catchError(this.handleError<TableResponse>(`table request`)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

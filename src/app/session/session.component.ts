@@ -19,6 +19,9 @@ export class SessionComponent implements OnInit {
 
   login(): void {
     this.backendService.login(this.sessionRequest)
-      .subscribe(r => this.sessionResponse = r);
+      .subscribe(r => {
+        this.sessionResponse = r; 
+        this.backendService.sessionResponse = r;
+      });
   }
 }

@@ -1,4 +1,4 @@
 export interface SessionResponse {
-    token: string;
+    sessionUuid: string;
     keyspaces: string[];
 }

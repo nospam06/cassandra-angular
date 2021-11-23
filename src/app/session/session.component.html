@@ -1,11 +1,8 @@
 <div *ngIf="sessionRequest">
   <p>Enter url and port to login</p>
   <div>
-    <label for="url">Url </label>
-    <input id="url" [(ngModel)]="sessionRequest.url" placeholder="Url" />
-  </div>
-  <div>
-    <label for="port">Port </label>
+    <label for="url">Cassandra url </label>
+    <input id="url" [(ngModel)]="sessionRequest.url" placeholder="Host" />
     <input id="port" [(ngModel)]="sessionRequest.port" placeholder="Port" />
   </div>
   <button (click)="login()">Login</button>

@@ -1,1 +1,8 @@
-<p>keyspace works!</p>
+<div *ngIf="keyspaces">
+  <ul>
+    <li *ngFor="let keyspace of keyspaces">
+      {{keyspace}}
+      <button title="List tables" (click)="tables(keyspace)">List Tables</button>
+    </li>
+  </ul>
+</div>
