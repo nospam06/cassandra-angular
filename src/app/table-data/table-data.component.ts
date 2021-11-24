@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend/backend.service';
 import { TableMetadata } from '../data/table-metadata';
-import { TableResponse } from '../data/table-response';
 
 @Component({
   selector: 'app-table-data',
@@ -17,5 +16,4 @@ export class TableDataComponent implements OnInit {
     this.metaData = this.backendService.tableResponse.metaData;
     this.rows = this.backendService.tableResponse.rows;
   }
-
 }

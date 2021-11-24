@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -18,26 +19,39 @@ export class BackendService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  sessionResponse: SessionResponse = {"sessionUuid": "", "keyspaces": []};
-  keyspaceResponse: KeyspaceResponse = {"keyspace": "", "tables": []};
-  tableResponse: TableResponse = {"table": "", "metaData": [], "rows": []};
+  sessionResponse: SessionResponse = { "sessionUuid": "", "keyspaces": [] };
+  keyspaceResponse: KeyspaceResponse = { "keyspace": "", "tables": [] };
+  tableResponse: TableResponse = { "table": "", "metaData": [], "rows": [] };
 
   constructor(
-    private http: HttpClient,) { }
+    private http: HttpClient,
+    private router: Router) { }
 
-  login(sessionRequest: SessionRequest): Observable<SessionResponse> {
-    return this.http.post<SessionResponse>(this.backendUrl, sessionRequest, this.httpOptions)
-      .pipe(catchError(this.handleError<SessionResponse>(`session request`)));
+  login(sessionRequest: SessionRequest): void {
+    this.http.post<SessionResponse>(this.backendUrl + "/session", sessionRequest, this.httpOptions)
+      .pipe(catchError(this.handleError<SessionResponse>(`session request`)))
+      .subscribe(res => {
+        this.sessionResponse = res;
+        this.router.navigateByUrl("/keyspace");
+      });
   }
 
-  listTables(keyspaceRequest: KeyspaceRequest): Observable<KeyspaceResponse> {
-    return this.http.post<KeyspaceResponse>(this.backendUrl + "/keyspace", keyspaceRequest, this.httpOptions)
-      .pipe(catchError(this.handleError<KeyspaceResponse>(`keyspace request`)));
+  listTables(keyspaceRequest: KeyspaceRequest): void {
+    this.http.post<KeyspaceResponse>(this.backendUrl + "/keyspace", keyspaceRequest, this.httpOptions)
+      .pipe(catchError(this.handleError<KeyspaceResponse>(`keyspace request`)))
+      .subscribe(res => {
+        this.keyspaceResponse = res;
+        this.router.navigateByUrl("/table");
+      });
   }
 
-  queryTable(tableRequest: TableRequest): Observable<TableResponse> {
-    return this.http.post<TableResponse>(this.backendUrl + "/table", tableRequest, this.httpOptions)
-      .pipe(catchError(this.handleError<TableResponse>(`table request`)));
+  queryTable(tableRequest: TableRequest): void {
+    this.http.post<TableResponse>(this.backendUrl + "/table", tableRequest, this.httpOptions)
+      .pipe(catchError(this.handleError<TableResponse>(`table request`)))
+      .subscribe(res => {
+        this.tableResponse = res;
+        this.router.navigateByUrl("/table-data");
+      });
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

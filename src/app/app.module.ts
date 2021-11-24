@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { SessionComponent } from './session/session.component';
 import { KeyspaceComponent } from './keyspace/keyspace.component';
 import { TableComponent } from './table/table.component';
-import { TableMetadataComponent } from './table-metadata/table-metadata.component';
 import { TableDataComponent } from './table-data/table-data.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { TableDataComponent } from './table-data/table-data.component';
     SessionComponent,
     KeyspaceComponent,
     TableComponent,
-    TableMetadataComponent,
     TableDataComponent
   ],
   imports: [

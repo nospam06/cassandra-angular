@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { BackendService } from '../backend/backend.service';
 import { KeyspaceRequest } from '../data/keyspace-request';
 
@@ -12,8 +11,7 @@ export class KeyspaceComponent implements OnInit {
   keyspaceRequest: KeyspaceRequest = {"sessionUuid": "", "keyspace": ""};
   keyspaces: string[] = [];
 
-  constructor(private backendService: BackendService,
-    private router: Router) { }
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.keyspaceRequest.sessionUuid = this.backendService.sessionResponse.sessionUuid;
@@ -22,14 +20,6 @@ export class KeyspaceComponent implements OnInit {
 
   tables(keyspace: string): void {
     this.keyspaceRequest.keyspace = keyspace;
-    this.backendService.listTables(this.keyspaceRequest)
-      .subscribe(r => {
-        this.backendService.keyspaceResponse = r;
-        this.next();
-      });
-  }
-
-  next(): void {
-    this.router.navigateByUrl("/table")
+    this.backendService.listTables(this.keyspaceRequest);
   }
 }
