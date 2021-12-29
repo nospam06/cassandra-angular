@@ -1,8 +1,7 @@
 <div *ngIf="keyspaces">
   <ul>
     <li *ngFor="let keyspace of keyspaces">
-      {{keyspace}}
-      <button title="List tables" (click)="tables(keyspace)">List Tables</button>
+      <button title="List tables" (click)="tables(keyspace)">{{keyspace}}</button>
     </li>
   </ul>
 </div>

@@ -1,8 +1,7 @@
 <div *ngIf="tables">
     <ul>
-      <li *ngFor="let table of tables">
-        {{table}}
-        <button title="View data" (click)="data(table)">See Data</button>
+      <li *ngFor="let table of tables">      
+        <button title="View data" (click)="data(table)">  {{table}}</button>
       </li>
     </ul>
   </div>
